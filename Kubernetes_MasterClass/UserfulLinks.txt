@@ -1,0 +1,7 @@
+katacoda to access kubernetes Lab : https://www.katacoda.com/courses/kubernetes
+Ingress :https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
+Configure Pods and Containers: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+Helm Lab katacoda : https://www.katacoda.com/vikas-poddar-slalom
+ArtifactHub : https://artifacthub.io/
+Helm Chart : https://www.katacoda.com/vikas-poddar-slalom/scenarios/session-03-lab1-helm-intro
+Helm Registry :https://www.katacoda.com/vikas-poddar-slalom/scenarios/session-03-lab1-helm-intro

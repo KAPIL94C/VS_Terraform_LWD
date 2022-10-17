@@ -1,0 +1,28 @@
+create deployment-
+ create deployment my-app --image=busybox
+-----------------------------------------------------------------
+ kubectl get deployment --output yaml               //to see the output of yaml file
+ ======================================================================================
+ 
+ kubectl get pods 
+ -----------------------------------------------------------
+ to see the logs-
+ kubectl logs <pods name>                            //to get the pods level logs-
+ --------------------------------------------------------------------------
+ kubectl describe pod <name of pod>                             // you will get name of containers
+ kubectl logs <name of pod> -c <name of container>              // you will logs  of container level
+ ==========================================================================================
+ 
+ to execute a command inside the container or pod
+ kubectl exec <name of pod> date                                // to know the date of pod
+ kubectl exec <name of pod> -c <name of container> -i -t --bash -il     //to enter into the container
+ 
+ ==================================================================================================
+ kubectl edit -h                                    //command
+ kubectl edit deployment <name of deployment>                 // to edit the deployment with zero downtime
+ 
+ ---------------------------------------
+ kubectl rollout -h  
+ kubectl rollout history <name of deployment>
+ 
+ 

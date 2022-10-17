@@ -1,0 +1,117 @@
+Create index.html
+=========
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Docker Nginx</title>
+</head>
+<body>
+  <h2>Hello from Nginx container</h2>
+</body>
+</html>
+
+=======
+Create Dockerfile
+=======
+
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
+
+======
+Build image
+======
+
+docker build -t webserver .
+
+
+====
+Rename your image as per your dockerhub acccount name
+Note: create your docker hub account if not created with private registry
+
+
+docker tag webserver <accountname>/mywebapp
+
+=====
+
+Push this this application to docker hub, first login to docker hub
+===============
+
+docker login 
+
+docker push  <accountname>/mywebapp
+
+========
+Define Kubernetes deployment in deployment.yaml file to deploy this application
+============
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp1
+  template:
+    metadata:
+      labels:
+        app: webapp1
+    spec:
+      containers:
+      - name: webapp1
+        image: kapil94c/mywebapp:latest
+        ports:
+        - containerPort: 80
+
+
+=====
+Create deployment -
+
+kubectl create -f deployment.yaml
+
+
+==
+Define Nodeport service to access this application in service.yaml file
+============
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp1-svc
+  labels:
+    app: webapp1
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30080
+  selector:
+    app: webapp1
+
+========
+Deploy the Service  
+========
+
+kubectl create -f service.yaml
+
+=====
+Get the description of service
+====
+
+kubectl get svc
+kubectl describe svc webapp1-svc
+
+============
+
+Access your deployed application
+
+
+
+
+
+
+
+
