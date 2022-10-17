@@ -1,0 +1,54 @@
+Documentation on DevOps_MasterClass:https://github.com/mustdevopsdemoz
+
+
+
+1.yum -y install wget 
+2.sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 
+3.sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key 
+4.yum -y install jenkins
+5. chkconfig jenkins on 
+6.service jenkins start
+7.yum -y install git 
+ # setting Gobal tools config for jdk and git,
+ adding github pluggin -------------------------- 
+10. mkdir /opt/maven 
+11. cd /opt/maven
+12. wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz 
+13. tar -xvzf apache-maven-3.6.3-bin.tar.gz 
+
+
+
+1.M2_HOME=/opt/maven/apache-maven-3.6.3 
+2..M2=$M2_HOME/bin 
+3..PATH=$PATH:$M2_HOME:$M2
+ 
+ 1.#setup Maven Integration and Maven Invoker plugin on jenkins 
+ 2.#configure the Maven path in the global tools in jenkins M2_HOME M2_HOME=/opt/maven//opt/maven/apache-maven-3.6.3
+Jenkins Pre-Installation Steps-------------------- 
+1.yum -y install java-8.0-openjdk-devel 
+2.java -version 
+2.find /usr/lib/jvm/java-1.8* | head -n 3 
+4.JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-<Java version which seen in the above output> 
+    ///usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.amzn2.0.1.x86_64
+5.export JAVA_HOME
+6. PATH=$PATH:$JAVA_HOME
+
+---------------------------------
+yum -y install java-1.8.0-openjdk-devel ------->this one is working
+
+================================================================
+ -sudo cat /var/lib/jenkins/secrets/initialAdminPassword  ------initial password 
+ 08b6ccac83ad4ea88efe57f1e5f2c708
+
+
+    
+ sudo service jenkins status     ----------> to check the service status of jenkins
+
+    
+sudo chkconfig jenkins on
+sudo  cd  /var/lib/jenkins
+ M2_HOME
+ which git        -----------------------> to find the location of git
+ ======================================================
+ go to manage jenkins 
+ --set the path for jdk,git,maven  before this uncheck the box for all these three.
